@@ -8,5 +8,5 @@ request.setNum1(2)
 request.setNum2(3)
 
 client.add(request, {}, (err, response) => {
-    console.log("response : ",response)
+    console.log("Result : ",response.getResult())
 })

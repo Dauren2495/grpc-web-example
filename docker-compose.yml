@@ -1,0 +1,8 @@
+version: '3'
+services:
+  server:
+    build: ./server/
+  envoy:
+    build: ./envoy/
+    ports:
+      - "8080:8080"

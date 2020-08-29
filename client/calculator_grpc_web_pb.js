@@ -150,5 +150,80 @@ proto.calculator.CalculatorPromiseClient.prototype.add =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.calculator.FibonacciRequest,
+ *   !proto.calculator.FibonacciResponse>}
+ */
+const methodDescriptor_Calculator_Fibonacci = new grpc.web.MethodDescriptor(
+  '/calculator.Calculator/Fibonacci',
+  grpc.web.MethodType.SERVER_STREAMING,
+  proto.calculator.FibonacciRequest,
+  proto.calculator.FibonacciResponse,
+  /**
+   * @param {!proto.calculator.FibonacciRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.calculator.FibonacciResponse.deserializeBinary
+);
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.calculator.FibonacciRequest,
+ *   !proto.calculator.FibonacciResponse>}
+ */
+const methodInfo_Calculator_Fibonacci = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.calculator.FibonacciResponse,
+  /**
+   * @param {!proto.calculator.FibonacciRequest} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.calculator.FibonacciResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.calculator.FibonacciRequest} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.calculator.FibonacciResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.calculator.CalculatorClient.prototype.fibonacci =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/calculator.Calculator/Fibonacci',
+      request,
+      metadata || {},
+      methodDescriptor_Calculator_Fibonacci);
+};
+
+
+/**
+ * @param {!proto.calculator.FibonacciRequest} request The request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!grpc.web.ClientReadableStream<!proto.calculator.FibonacciResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.calculator.CalculatorPromiseClient.prototype.fibonacci =
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
+      '/calculator.Calculator/Fibonacci',
+      request,
+      metadata || {},
+      methodDescriptor_Calculator_Fibonacci);
+};
+
+
 module.exports = proto.calculator;
 

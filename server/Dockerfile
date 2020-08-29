@@ -1,4 +1,6 @@
 FROM golang:latest
-ADD ./web .
-CMD ./web
+WORKDIR server
+ADD . .
+RUN go build -o server server.go
+CMD ./server
 
